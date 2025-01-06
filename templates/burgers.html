@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burgers</title>
+</head>
+<body>
+    <h2>Burgers</h2>
+    <ul>
+        {% for burger in burgers %}
+            <li><a href="{{ url_for('burger_reviews', burger_id=burger.id) }}">{{ burger.name }}</a> - {{ burger.chain.name }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+

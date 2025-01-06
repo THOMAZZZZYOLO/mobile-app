@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews for {{ burger.name }}</title>
+</head>
+<body>
+    <h2>Reviews for {{ burger.name }}</h2>
+    <ul>
+        {% for review in reviews %}
+            <li>
+                <strong>Rating:</strong> {{ review.rating }} <br>
+                <strong>Comment:</strong> {{ review.comment }} <br>
+                {% if review.photo_url %}
+                    <img src="{{ review.photo_url }}" alt="Review Photo" style="max-width: 200px;">
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    <h3>Leave a Review</h3>
+    <form method="POST" action="{{ url_for('create_review') }}">
+        <input type="hidden" name="burger_id" value="{{ burger.id }}">
+        <label for="rating">Rating</label>
+        <input type="number" name="rating" min="1" max="5" required><br>
+        <label for="comment">Comment</label>
+        <textarea name="comment"></textarea><br>
+        <label for="photo_url">Photo URL</label>
+        <input type="text" name="photo_url"><br>
+        <button type="submit">Submit Review</button>
+    </form>
+</body>
+</html>
+
+
